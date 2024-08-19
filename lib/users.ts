@@ -2,6 +2,8 @@ import prisma from '@/lib/prisma'
 import { User } from '@prisma/client'
 
 export async function createUser(data: User) {
+  'use server'
+
   try {
     const user = await prisma.user.create({ data })
     return { user }
@@ -12,7 +14,7 @@ export async function createUser(data: User) {
 
 export async function getUserById({
   id,
-  clerkUserId
+  clerkUserId,
 }: {
   id?: string
   clerkUserId?: string
@@ -35,7 +37,7 @@ export async function UpdateUser(id: string, data: Partial<User>) {
   try {
     const user = await prisma.user.update({
       where: { id },
-      data
+      data,
     })
     return { user }
   } catch (error) {
