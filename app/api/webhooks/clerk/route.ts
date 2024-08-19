@@ -71,5 +71,5 @@ export async function POST(req: Request) {
     await createUser(user as User)
   }
 
-  return new Response('working', { status: 200 })
+  return new Response('', { status: 200 })
 }
