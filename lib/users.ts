@@ -2,8 +2,6 @@ import prisma from '@/lib/prisma'
 import { User } from '@prisma/client'
 
 export async function createUser(data: User) {
-  'use server'
-
   try {
     const user = await prisma.user.create({ data })
     return { user }

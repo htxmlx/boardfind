@@ -1,7 +1,6 @@
-import prisma from '@/lib/prisma'
-import { WebhookEvent } from '@clerk/nextjs/server'
-import { headers } from 'next/headers'
 import { Webhook } from 'svix'
+import { headers } from 'next/headers'
+import { WebhookEvent } from '@clerk/nextjs/server'
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
@@ -66,12 +65,8 @@ export async function POST(req: Request) {
       ...(last_name ? { lastName: last_name } : {}),
       ...(image_url ? { imageUrl: image_url } : {}),
     }
-    try {
-      await prisma.user.create({ data: user })
-      return { user }
-    } catch (error) {
-      return { error }
-    }
+    console.log(user)
+    // await createUser(user as User)
   }
 
   return new Response('', { status: 200 })
